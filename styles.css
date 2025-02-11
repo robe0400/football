@@ -1,39 +1,231 @@
-/* Add to your existing styles.css */
-#sound-controls {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: rgba(0, 0, 0, 0.7);
-    padding: 10px;
-    border-radius: 5px;
+:root {
+    --field-green: #2E7D32;
+    --field-stripe: #276829;
+    --line-white: #ffffff;
+    --endzone-color: #1B5E20;
+    --player-offense: #E53935;
+    --player-defense: #1E88E5;
+}
+
+body {
+    margin: 0;
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f0f0;
+}
+
+#game-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+#field-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 2.5 / 1;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+}
+
+#football-field {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    background: var(--field-green);
+    background-image: repeating-linear-gradient(
+        0deg,
+        var(--field-stripe),
+        var(--field-stripe) 5px,
+        var(--field-green) 5px,
+        var(--field-green) 10px
+    );
+}
+
+.endzone {
+    width: 10%;
+    height: 100%;
+    background-color: var(--endzone-color);
+    position: relative;
     display: flex;
     align-items: center;
+    justify-content: center;
+}
+
+.endzone-text {
+    color: var(--line-white);
+    font-size: 1.2vw;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    letter-spacing: 0.5em;
+    opacity: 0.8;
+}
+
+#playing-field {
+    width: 80%;
+    height: 100%;
+    position: relative;
+}
+
+.yard-line {
+    position: absolute;
+    width: 2px;
+    height: 100%;
+    background-color: var(--line-white);
+    opacity: 0.8;
+}
+
+.yard-line span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--line-white);
+    font-size: 1vw;
+    opacity: 0.8;
+}
+
+#hash-marks {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent calc(10% - 1px),
+            var(--line-white) calc(10% - 1px),
+            var(--line-white) 10%
+        );
+    opacity: 0.4;
+}
+
+.player {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    transition: all 0.5s ease;
+}
+
+.offense-qb {
+    background-color: var(--player-offense);
+    box-shadow: 0 0 5px rgba(0,0,0,0.3);
+}
+
+.offense-rb, .offense-wr {
+    background-color: var(--player-offense);
+    opacity: 0.9;
+}
+
+.offense-ol {
+    background-color: var(--player-offense);
+    opacity: 0.8;
+    width: 24px;
+    height: 24px;
+}
+
+.defense-dl, .defense-lb, .defense-db {
+    background-color: var(--player-defense);
+    opacity: 0.85;
+}
+
+#ball-sprite {
+    position: absolute;
+    width: 12px;
+    height: 8px;
+    background-color: #8B4513;
+    border-radius: 40%;
+    transform: rotate(-45deg);
+    transition: all 0.5s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+#scoreboard {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5px;
+}
+
+#question-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+#question-text {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#answers-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: 10px;
 }
 
-#toggle-sound {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 24px;
-    cursor: pointer;
-    padding: 5px;
-}
-
-#volume-slider {
-    width: 100px;
-    height: 5px;
-    -webkit-appearance: none;
-    background: white;
+.answer-btn {
+    padding: 15px;
+    font-size: 18px;
+    border: 2px solid #1565C0;
+    background-color: white;
     border-radius: 5px;
-    outline: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-#volume-slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    width: 15px;
-    height: 15px;
-    background: #1565C0;
-    border-radius: 50%;
+.answer-btn:hover {
+    background-color: #E3F2FD;
+}
+
+#controls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+#controls button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #1565C0;
+    color: white;
+    border: none;
+    border-radius: 5px;
     cursor: pointer;
+}
+
+#controls button:hover {
+    background-color: #0D47A1;
+}
+
+@media (max-width: 768px) {
+    .endzone-text {
+        font-size: 2vw;
+    }
+    
+    .yard-line span {
+        font-size: 1.5vw;
+    }
+    
+    .player {
+        width: 16px;
+        height: 16px;
+    }
+    
+    #scoreboard {
+        font-size: 12px;
+    }
 }
