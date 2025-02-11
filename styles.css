@@ -77,6 +77,12 @@ body {
     opacity: 0.8;
 }
 
+.yard-line[data-yard="10"] { left: 10%; }
+.yard-line[data-yard="20"] { left: 20%; }
+.yard-line[data-yard="30"] { left: 30%; }
+.yard-line[data-yard="40"] { left: 40%; }
+.yard-line[data-yard="50"] { left: 50%; }
+
 .yard-line span {
     position: absolute;
     top: 50%;
@@ -229,3 +235,20 @@ body {
         font-size: 12px;
     }
 }
+
+/* Formation styles */
+.i-formation .offense-qb { left: 40%; top: 45%; }
+.i-formation .offense-rb { left: 40%; top: 55%; }
+.i-formation .offense-wr { left: 38%; top: 20%; }
+.i-formation .offense-ol:nth-child(4) { left: 42%; top: 40%; }
+.i-formation .offense-ol:nth-child(5) { left: 42%; top: 50%; }
+
+.shotgun-formation .offense-qb { left: 35%; top: 45%; }
+.shotgun-formation .offense-rb { left: 45%; top: 45%; }
+.shotgun-formation .offense-wr { left: 38%; top: 20%; }
+.shotgun-formation .offense-ol:nth-child(4) { left: 42%; top: 40%; }
+.shotgun-formation .offense-ol:nth-child(5) { left: 42%; top: 50%; }
+
+.defense-43 .defense-dl { left: 45%; top: 45%; }
+.defense-43 .defense-lb { left: 50%; top: 45%; }
+.defense-43 .defense-db { left: 55%; top: 45%; }
